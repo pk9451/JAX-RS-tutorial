@@ -1,5 +1,4 @@
 package org.restApp.messanger.resources;
-
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -21,7 +20,6 @@ import org.restApp.messanger.service.MessangerService;
 @Produces(value={MediaType.APPLICATION_JSON,MediaType.TEXT_XML})
 @Consumes(MediaType.APPLICATION_JSON)
 public class MessageResource {
-	
 	MessangerService messangerService = new MessangerService();
 	@GET
 	public List<Message> getAllMessages()
