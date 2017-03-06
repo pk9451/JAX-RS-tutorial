@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
+import org.restApp.messanger.messangerException.DataNotFoundException;
 import org.restApp.messanger.model.Message;
 import org.restApp.messanger.service.MessangerService;
 
@@ -34,6 +35,10 @@ public class MessageResource {
 	@Path("/{messageId}")
 	public Message getMessage(@PathParam("messageId") Long messageId,@Context UriInfo uriInfo){
 		Message message = messangerService.getMessage(messageId);
+		if(message==null)
+		{
+			throw new DataNotFoundException("Meessage with id:"+messageId+"not found");
+		}
 		message.addLinks(uriForSelf(uriInfo, message), "self");
 		message.addLinks(uriForProfile(uriInfo, message), "profile");
 		message.addLinks(uriForComments(uriInfo, message), "comments");
