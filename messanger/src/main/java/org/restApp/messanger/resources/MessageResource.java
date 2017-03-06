@@ -37,7 +37,7 @@ public class MessageResource {
 		Message message = messangerService.getMessage(messageId);
 		if(message==null)
 		{
-			throw new DataNotFoundException("Meessage with id:"+messageId+"not found");
+			throw new DataNotFoundException("Meessage with id:"+messageId+" not found");
 		}
 		message.addLinks(uriForSelf(uriInfo, message), "self");
 		message.addLinks(uriForProfile(uriInfo, message), "profile");
